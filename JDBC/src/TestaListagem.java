@@ -13,7 +13,7 @@ public class TestaListagem {
        ResultSet rst = stm.getResultSet(); // retorna os resultados 
        
        while(rst.next()) { // enquanto tiver o proximo; vai percorrer a lista de resultados que volta do banco
-    	   Integer id = rst.getInt("ID"); // puxa o valor da coluna ID
+    	   Integer id = rst.getInt("ID"); // puxa o valor por coluna
     	   System.out.println(id);
     	   String nome = rst.getString("NOME");
     	   System.out.println(nome);

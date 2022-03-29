@@ -22,6 +22,7 @@ public class TestaInsercao {
 	    	 System.out.println("O id criado foi: " + id);
 	     }
 	 
+	     connection.close();
 	 }
      
 }
