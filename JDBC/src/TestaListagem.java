@@ -8,8 +8,8 @@ public class TestaListagem {
         ConnectionFactory factory = new ConnectionFactory();
         Connection connection = factory.recuperarConexao();
         
-       Statement stm = connection.createStatement();
-       stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO"); // retorna true se retornar uma lista; se nao retornar nada, volta falso
+       PreparedStatement stm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+       stm.execute(); // retorna true se retornar uma lista; se nao retornar nada, volta falso
        ResultSet rst = stm.getResultSet(); // retorna os resultados 
        
        while(rst.next()) { // enquanto tiver o proximo; vai percorrer a lista de resultados que volta do banco
