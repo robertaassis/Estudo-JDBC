@@ -1,3 +1,4 @@
+package br.com.alura.jdbc;
 import java.sql.*;
 
 public class TestaInsercaoComParametro {
