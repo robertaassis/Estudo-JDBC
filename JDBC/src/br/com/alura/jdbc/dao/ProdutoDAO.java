@@ -4,6 +4,7 @@ import java.sql.*;
 
 import java.util.*;
 
+import br.com.alura.jdbc.modelo.Categoria;
 import br.com.alura.jdbc.modelo.Produto;
 
 
@@ -40,6 +41,27 @@ public class ProdutoDAO {
 			String sql = "SELECT * FROM PRODUTO";
 			
 			try(PreparedStatement pstm = connection.prepareStatement(sql)){
+				pstm.execute();
+				
+				try(ResultSet rst = pstm.getResultSet()){
+					while(rst.next()) { // percorre a lista
+						Produto produto = new Produto(rst.getInt(1), rst.getString(2), rst.getString(3)); // recupera o produto; chama segundo construtor
+						/* EX: o primeiro produto do banco de dados é id=1, nome=tv, descricao=tv totvs. Quando instancia ele acima, ele coloca esses valores nos 
+						 atributos da classe Produto, ou seja,this.id=1, this.nome=tv, this.descricao = tv totvs */
+						produtos.add(produto); // adiciona ele na lista de produtos
+					}
+				}
+			}
+			return produtos; // retorna a lista de produtos
+		}
+
+		public List<Produto> buscar(Categoria ct) throws SQLException{ // busca produto especifico
+			List<Produto> produtos = new ArrayList<Produto>();
+			String sql = "SELECT * FROM PRODUTO WHERE CATEGORIA_ID = ?";
+			
+			 
+			try(PreparedStatement pstm = connection.prepareStatement(sql)){
+				pstm.setInt(1,  ct.getId()); // como passa a categoria, pega o id da categoria
 				pstm.execute();
 				
 				try(ResultSet rst = pstm.getResultSet()){
